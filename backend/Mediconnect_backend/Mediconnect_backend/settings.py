@@ -40,8 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'hospital',
-    'doctors'
+    'doctors',
+    'accounts',
+    
+    
 ]
+AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,10 +84,10 @@ WSGI_APPLICATION = 'Mediconnect_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django26',
+        'NAME': 'mediconnect_database',
         'USER':'root',
         'host':'localhost',
-        'PASSWORD':'sql@123',
+        'PASSWORD':'admin123',
         'PORT':3306,
     }
 }
