@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,11 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'hospital',
     'authentication',
-    'rest_framework',
-]
+    'accounts',
+    'doctors',
+    'patient',
+    'appointment'
 
+]
+AUTH_USER_MODEL = 'accounts.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,9 +87,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mediconnect_database',
         'USER':'root',
-        'host':'localhost',
-        'PASSWORD':'mysql@123',
-        'PORT':3306,
+        'HOST':'localhost',
+        'PASSWORD':'kishore@123',
+        'PORT':'3306',
     }
 }
 
@@ -128,3 +134,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
