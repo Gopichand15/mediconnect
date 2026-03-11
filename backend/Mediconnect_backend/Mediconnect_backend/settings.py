@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hospital',
+    'authentication',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +82,7 @@ DATABASES = {
         'NAME': 'mediconnect_database',
         'USER':'root',
         'host':'localhost',
-        'PASSWORD':'admin123',
+        'PASSWORD':'mysql@123',
         'PORT':3306,
     }
 }
