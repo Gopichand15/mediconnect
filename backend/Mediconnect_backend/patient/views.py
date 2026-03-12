@@ -1,22 +1,40 @@
+<<<<<<< HEAD
 from django.shortcuts import render
 
 
 # Create your views here.
+=======
+>>>>>>> 3b727760eb7167ffe9b06c4016b9afeffe16d6a5
 from rest_framework import generics
-from .models import Patient
-from .serializers import PatientSerializer
+from .models import PatientRecord
+from .serializers import PatientRecordSerializer
 
 
-# GET all patients
-# POST create patient
-class PatientListCreateView(generics.ListCreateAPIView):
-    queryset = Patient.objects.all()
-    serializer_class = PatientSerializer
+# Add Patient
+class AddPatientView(generics.CreateAPIView):
+
+    queryset = PatientRecord.objects.all()
+    serializer_class = PatientRecordSerializer
 
 
-# GET single patient
-# PUT update
-# DELETE patient
-class PatientDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Patient.objects.all()
-    serializer_class = PatientSerializer
+# View All Patients
+class PatientListView(generics.ListAPIView):
+
+    queryset = PatientRecord.objects.all()
+    serializer_class = PatientRecordSerializer
+
+
+# Update Patient
+class PatientUpdateView(generics.UpdateAPIView):
+
+    queryset = PatientRecord.objects.all()
+    serializer_class = PatientRecordSerializer
+    lookup_field = "id"
+
+
+# Delete Patient
+class PatientDeleteView(generics.DestroyAPIView):
+
+    queryset = PatientRecord.objects.all()
+    serializer_class = PatientRecordSerializer
+    lookup_field = "id"
