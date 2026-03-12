@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     'hospital',
     'doctors',
     'accounts',
-    
-    
+    'authentication',
+    'patient',
+    'reviews'
+  
 ]
 AUTH_USER_MODEL = 'accounts.User'
 
@@ -86,9 +88,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mediconnect_database',
         'USER':'root',
-        'host':'localhost',
+        'HOST':'localhost',
         'PASSWORD':'admin123',
-        'PORT':3306,
+        'PORT':'3306',
     }
 }
 

@@ -23,8 +23,14 @@ urlpatterns = [
     path('hospital/',include('hospital.urls')),
     path('doctors/',include('doctors.urls')), 
     path('accounts/',include('accounts.urls')), 
+    path('authentication/',include('authentication.urls')),
+    path('patient/',include('patient.urls')),
+    path('reviews/',include('reviews.urls'))
     
     
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    
+
