@@ -1,11 +1,9 @@
+
 from django.shortcuts import render
-
-# Create your views here.
-
-# Create your views here.
-from rest_framework.decorators import api_view
+from rest_framework import generics
+from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Hospital,Patient
+from .models import Hospital, Patient
 from .serializers import HospitalSerializer, PatientSerializer
 import random
 
@@ -14,105 +12,112 @@ import random
 # Hospital Registration
 # -------------------------------
 
-@api_view(['POST'])
-def hospital_register(request):
+class HospitalRegisterView(generics.CreateAPIView):
 
-    serializer = HospitalSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response({
-            "status": True,
-            "message": "Hospital registered successfully"
-        })
+    queryset = Hospital.objects.all()
+    serializer_class = HospitalSerializer
 
-    return Response(serializer.errors)
+    def create(self, request, *args, **kwargs):
 
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response({
+                "status": True,
+                "message": "Hospital registered successfully"
+            })
+
+        return Response(serializer.errors)
 
 
 # -------------------------------
 # Hospital Login
 # -------------------------------
 
-@api_view(['POST'])
-def hospital_login(request):
+class HospitalLoginView(APIView):
 
-    username = request.data.get("username")
-    password = request.data.get("password")
+    def post(self, request):
 
-    try:
+        username = request.data.get("username")
+        password = request.data.get("password")
 
-        hospital = Hospital.objects.get(
-            username=username,
-            password=password
-        )
+        try:
 
-        return Response({
-            "status": True,
-            "message": "Login successful",
-            "hospital_name": hospital.hospital_name
-        })
+            hospital = Hospital.objects.get(
+                username=username,
+                password=password
+            )
 
-    except Hospital.DoesNotExist:
+            return Response({
+                "status": True,
+                "message": "Login successful",
+                "hospital_name": hospital.hospital_name
+            })
 
-        return Response({
-            "status": False,
-            "message": "Invalid username or password"
-        })
+        except Hospital.DoesNotExist:
+
+            return Response({
+                "status": False,
+                "message": "Invalid username or password"
+            })
 
 
 # -------------------------------
 # Patient Registration (OTP)
 # -------------------------------
 
-@api_view(['POST'])
-def patient_register(request):
+class PatientRegisterView(APIView):
 
-    name = request.data.get("name")
-    age = request.data.get("age")
-    phone = request.data.get("phone")
+    def post(self, request):
 
-    otp = random.randint(1000,9999)
+        name = request.data.get("name")
+        age = request.data.get("age")
+        phone = request.data.get("phone")
 
-    patient = Patient.objects.create(
-        name=name,
-        age=age,
-        phone=phone,
-        otp=otp
-    )
+        otp = random.randint(1000, 9999)
 
-    return Response({
-        "status": True,
-        "message": "OTP sent successfully",
-        "otp": otp
-    })
-
-
-# -------------------------------
-# Patient Login With OTP
-# -------------------------------
-
-@api_view(['POST'])
-def patient_login(request):
-
-    phone = request.data.get("phone")
-    otp = request.data.get("otp")
-
-    try:
-
-        patient = Patient.objects.get(
+        patient = Patient.objects.create(
+            name=name,
+            age=age,
             phone=phone,
             otp=otp
         )
 
         return Response({
             "status": True,
-            "message": "Login successful",
-            "patient_name": patient.name
+            "message": "OTP sent successfully",
+            "otp": otp
         })
 
-    except Patient.DoesNotExist:
 
-        return Response({
-            "status": False,
-            "message": "Invalid OTP"
-        })
+# -------------------------------
+# Patient Login With OTP
+# -------------------------------
+
+class PatientLoginView(APIView):
+
+    def post(self, request):
+
+        phone = request.data.get("phone")
+        otp = request.data.get("otp")
+
+        try:
+
+            patient = Patient.objects.get(
+                phone=phone,
+                otp=otp
+            )
+
+            return Response({
+                "status": True,
+                "message": "Login successful",
+                "patient_name": patient.name
+            })
+
+        except Patient.DoesNotExist:
+
+            return Response({
+                "status": False,
+                "message": "Invalid OTP"
+            })

@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'Mediconnect_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django26',
+        'NAME': 'mediconnect_database',
         'USER': 'root',
         'HOST': 'localhost',
         'PASSWORD': 'mysql@123',
-        'PORT': 3306,
+        'PORT': '3306',
     }
 }
 
