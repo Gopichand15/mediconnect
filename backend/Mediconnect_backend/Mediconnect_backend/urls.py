@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hospital/',include('hospital.urls')),
+<<<<<<< HEAD
     path('doctors/',include('doctors.urls')), 
     path('accounts/',include('accounts.urls')), 
     path('authentication/',include('authentication.urls')),
@@ -28,9 +29,22 @@ urlpatterns = [
     path('reviews/',include('reviews.urls'))
     
     
+=======
+
+    path('authentication/',include('authentication.urls')),
+
+
+
+    path('doctors/',include('doctors.urls')),  
+    path('appointment/',include('appointment.urls')),  
+    path('patient/', include('patient.urls')),  
+>>>>>>> 68b1f3bc52eb52f6bfeaf6c2e7af5fb77b3bf0b8
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> 68b1f3bc52eb52f6bfeaf6c2e7af5fb77b3bf0b8

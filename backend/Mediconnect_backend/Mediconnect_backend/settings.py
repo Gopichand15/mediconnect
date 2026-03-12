@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'hospital',
+<<<<<<< HEAD
     'doctors',
     'accounts',
     'authentication',
@@ -48,7 +49,16 @@ INSTALLED_APPS = [
   
 ]
 AUTH_USER_MODEL = 'accounts.User'
+=======
+    'authentication',
+    'accounts',
+    'doctors',
+    'patient',
+    'appointment'
+>>>>>>> 68b1f3bc52eb52f6bfeaf6c2e7af5fb77b3bf0b8
 
+]
+AUTH_USER_MODEL = 'accounts.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -89,7 +99,11 @@ DATABASES = {
         'NAME': 'mediconnect_database',
         'USER':'root',
         'HOST':'localhost',
+<<<<<<< HEAD
         'PASSWORD':'admin123',
+=======
+        'PASSWORD':'kishore@123',
+>>>>>>> 68b1f3bc52eb52f6bfeaf6c2e7af5fb77b3bf0b8
         'PORT':'3306',
     }
 }
