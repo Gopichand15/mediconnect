@@ -1,12 +1,23 @@
 from django.db import models
+from authentication.models import Hospital
 
-# Create your models here.
-from accounts.models import User
 
-# Create your models here.
+class PatientRecord(models.Model):
 
-class Patient(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    hospital = models.ForeignKey(
+        Hospital,
+        on_delete=models.CASCADE,
+        related_name="patients"
+    )
+
+    patient_name = models.CharField(max_length=100)
     age = models.IntegerField()
-    gender = models.CharField(max_length=10)
     phone = models.CharField(max_length=15)
+
+    disease = models.CharField(max_length=200)
+    doctor_name = models.CharField(max_length=100)
+
+    admitted_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.patient_name
