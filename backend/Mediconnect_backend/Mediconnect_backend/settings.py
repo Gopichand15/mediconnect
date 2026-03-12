@@ -41,12 +41,17 @@ INSTALLED_APPS = [
     'rest_framework',
     'hospital',
 <<<<<<< HEAD
+<<<<<<< HEAD
     'doctors',
     'accounts',
     'authentication',
     'patient',
     'reviews'
   
+=======
+    'authentication',
+    'doctors',
+>>>>>>> 652df91169b0af49a2284db9722f18fd5a54c09f
 ]
 AUTH_USER_MODEL = 'accounts.User'
 =======
@@ -97,6 +102,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mediconnect_database',
+<<<<<<< HEAD
         'USER':'root',
         'HOST':'localhost',
 <<<<<<< HEAD
@@ -105,9 +111,14 @@ DATABASES = {
         'PASSWORD':'kishore@123',
 >>>>>>> 68b1f3bc52eb52f6bfeaf6c2e7af5fb77b3bf0b8
         'PORT':'3306',
+=======
+        'USER': 'root',
+        'HOST': 'localhost',
+        'PASSWORD': 'mysql@123',
+        'PORT': '3306',
+>>>>>>> 652df91169b0af49a2284db9722f18fd5a54c09f
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

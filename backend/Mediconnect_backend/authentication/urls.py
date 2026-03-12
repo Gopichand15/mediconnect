@@ -3,10 +3,9 @@ from .views import *
 
 urlpatterns = [
 
-path('hospital/register/',hospital_register),
-path('hospital/login/',hospital_login),
+    path('hospital/register/', HospitalRegisterView.as_view()),
+    path('hospital/login/', HospitalLoginView.as_view()),
 
-path('patient/register/',patient_register),
-path('patient/login/',patient_login),
-
+    path('patient/register/', PatientRegisterView.as_view()),
+    path('patient/login/', PatientLoginView.as_view()),
 ]
